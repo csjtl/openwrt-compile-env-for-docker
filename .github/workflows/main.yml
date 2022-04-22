@@ -33,15 +33,7 @@ jobs:
       run : |
         docker build -t csjtl/openwrt-compiler-env-for-docker:v1.01 .
         docker save -o ./openwrt-compiler-env-for-docker:v1.01.tar csjtl/openwrt-compiler-env-for-docker:v1.01
-    
-    - name: Upload firmware for artifact
-      uses: actions/upload-artifact@main
-      continue-on-error: true
-      with:
-        path: |
-          openwrt-compiler-env-for-docker:v1.01.tar
-    
-    
+
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
     - name: Set up Docker Buildx
@@ -57,12 +49,7 @@ jobs:
         context: .
         push: true
         tags: csjtl/openwrt-compiler-env-for-docker:v1.01
-  
-    - name: Apply
-      run: |
-        git add .
-        git commit -m "$(date +%Y-%m-%d" "%H:%M:%S)" || true
-        git push
+
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@main
       continue-on-error: true
