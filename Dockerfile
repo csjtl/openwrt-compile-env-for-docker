@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:jammy-20220404
 RUN echo "dash dash/sh boolean false" | debconf-set-selections
 RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 RUN DEBIAN_FRONTEND=noninteractive bash -c 'yes | unminimize' && apt-get update && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
