@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
 RUN echo "dash dash/sh boolean false" | debconf-set-selections
-RUN dpkg-reconfigure dash && bash -c 'yes | unminimize' && apt-get update && apt-get upgrade && apt-get install --assume-yes apt-utils
+RUN dpkg-reconfigure dash && bash -c 'yes | unminimize' && apt-get update && apt-get upgrade && apt-get install -y apt-utils
 RUN ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && apt-get -y install asciidoc && dpkg-reconfigure --frontend noninteractive tzdata \
     && apt-get -y install antlr3 asciidoc autoconf automake autopoint binutils \
