@@ -28,11 +28,6 @@ jobs:
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
         sudo timedatectl set-timezone "Asia/Shanghai"
-    
-    - name: Set git identity
-      run : |
-        docker build -t csjtl/openwrt-compiler-env-for-docker:v1.01 .
-        docker save -o ./openwrt-compiler-env-for-docker:v1.01.tar csjtl/openwrt-compiler-env-for-docker:v1.01
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
