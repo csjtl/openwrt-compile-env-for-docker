@@ -1,7 +1,7 @@
 FROM ubuntu:latest
+ARG DEBIAN_FRONTEND=noninteractive
 RUN echo "dash dash/sh boolean false" | debconf-set-selections
-RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
-RUN DEBIAN_FRONTEND=noninteractive bash -c 'yes | unminimize' && apt-get update && apt-get upgrade && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+RUN dpkg-reconfigure dash && bash -c 'yes | unminimize' && apt-get update && apt-get upgrade && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && apt-get -y install asciidoc && dpkg-reconfigure --frontend noninteractive tzdata \
     && apt-get -y install antlr3 asciidoc autoconf automake autopoint binutils \
     build-essential bzip2 curl device-tree-compiler flex g++-multilib gawk gcc-multilib \
