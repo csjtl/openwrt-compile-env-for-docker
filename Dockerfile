@@ -1,7 +1,6 @@
 FROM ubuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
-COPY molokai.vim vimrc /usr/share/vim/vim82/colors/
-RUN mv /usr/share/vim/vim82/colors/vimrc /etc/vim && echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash && bash -c 'yes | unminimize' && apt-get update -y && apt-get full-upgrade -y \
+RUN echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash && bash -c 'yes | unminimize' && apt-get update -y && apt-get full-upgrade -y \
     && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && apt-get install -y asciidoc && dpkg-reconfigure --frontend noninteractive tzdata \
     && apt-get install -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential \
@@ -16,4 +15,5 @@ RUN mv /usr/share/vim/vim82/colors/vimrc /etc/vim && echo "dash dash/sh boolean 
     && apt-get install sudo \
     && echo "%sudo ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
     && echo "csjtl ALL=(ALL:ALL) ALL" >> /etc/sudoers
-
+COPY molokai.vim /usr/share/vim/vim82/colors/
+COPY vimrc /etc/vim/
