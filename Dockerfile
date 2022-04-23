@@ -10,7 +10,7 @@ RUN echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigu
     libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libtool lrzsz \
     mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 python3-pip qemu-utils \
     rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev \
-    && apt-get -y install android-libext4-utils-dev openssh-server net-tools iputils-ping bind-utils \
+    && apt-get -y install android-libext4-utils-dev openssh-server net-tools iputils-ping bind9-utils \
     && ssh-keygen -A \
     && cat /root/bashrc >> /root/.bashrc && rm /root/bashrc \
     && mv /root/molokai.vim /usr/share/vim/*/colors/ && mv /root/vimrc /etc/vim/ \
