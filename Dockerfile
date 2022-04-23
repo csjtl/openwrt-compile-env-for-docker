@@ -1,5 +1,6 @@
 FROM ubuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
+COPY molokai.vim vimrc auto-start.sh bashrc /root/
 RUN echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigure dash && bash -c 'yes | unminimize' && apt-get update -y && apt-get full-upgrade -y \
     && ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && apt-get install -y asciidoc && dpkg-reconfigure --frontend noninteractive tzdata \
@@ -9,11 +10,12 @@ RUN echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigu
     libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libtool lrzsz \
     mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python2.7 python3 python3-pip qemu-utils \
     rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev \
-    && apt-get -y install android-libext4-utils-dev openssh-server \
+    && apt-get -y install android-libext4-utils-dev openssh-server net-tools iputils-ping bind-utils \
+    && ssh-keygen -A \
+    && cat /root/bashrc >> /root/.bashrc && rm /root/bashrc \
+    && mv /root/molokai.vim /usr/share/vim/*/colors/ && mv /root/vimrc /etc/vim/ \
     && adduser csjtl --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password \
     && echo "csjtl:1" | chpasswd \
     && apt-get install sudo \
     && echo "%sudo ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
     && echo "csjtl ALL=(ALL:ALL) ALL" >> /etc/sudoers
-COPY molokai.vim /usr/share/vim/vim82/colors/
-COPY vimrc /etc/vim/
