@@ -16,6 +16,6 @@ RUN adduser csjtl --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled
     && apt-get install sudo \
     && echo "%sudo ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
     && echo "csjtl ALL=(ALL:ALL) ALL" >> /etc/sudoers
-COPY molokai.vim /usr/share/vim/*/colors
+COPY molokai.vim /usr/share/vim/vim8*/colors/
 COPY vimrc /etc/vim
 
