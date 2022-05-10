@@ -13,7 +13,7 @@ RUN echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigu
     && apt-get -y install android-libext4-utils-dev openssh-server net-tools iputils-ping dnsutils \
     && ssh-keygen -A \
     && cat /root/bashrc >> /root/.bashrc && rm /root/bashrc && chmod 744 /root/auto-start.sh \
-    && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+    && sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && mv /root/molokai.vim /usr/share/vim/*/colors/ && mv /root/vimrc /etc/vim/ \
     && adduser csjtl --gecos "First Last,RoomNumber,WorkPhone,HomePhone" --disabled-password \
     && echo "csjtl:1" | chpasswd \
