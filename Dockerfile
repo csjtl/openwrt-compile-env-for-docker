@@ -20,5 +20,6 @@ RUN echo "dash dash/sh boolean false" | debconf-set-selections && dpkg-reconfigu
     && echo "root:root" | chpasswd \
     && apt-get install sudo \
     && echo "%sudo ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
-    && echo "csjtl ALL=(ALL:ALL) ALL" >> /etc/sudoers
+    && echo "csjtl ALL=(ALL:ALL) ALL" >> /etc/sudoers \
+    && su csjtl && cd ~
 EXPOSE 0-65535
